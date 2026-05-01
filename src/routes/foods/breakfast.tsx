@@ -25,17 +25,78 @@ function Breakfast() {
             Compare breakfast pricing for quick-service options, local cafés, and traditional Indian morning meals.
           </p>
 
-          <div className="mt-12 grid gap-6">
-            <div className="rounded-3xl border-2 border-foreground bg-card p-8">
-              <h2 className="text-3xl font-bold">Typical choices</h2>
-              <p className="mt-4 text-muted-foreground">
-                Dosas, idlis, parathas, hot sandwiches, and breakfast combos are widely available and budget-friendly.</p>
-            </div>
-            <div className="rounded-3xl border-2 border-foreground bg-card p-8">
-              <h2 className="text-3xl font-bold">Price range</h2>
-              <p className="mt-4 text-muted-foreground">
-                Breakfast items usually cost between ₹100 and ₹300 depending on location and serving size.</p>
-            </div>
+          <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                name: "Poha",
+                price: "₹30 - ₹70",
+                description: "Flattened rice with potatoes and peanuts",
+              },
+              {
+                name: "Upma",
+                price: "₹40 - ₹80",
+                description: "Savory semolina dish with vegetables and spices",
+              },
+              {
+                name: "Idli",
+                price: "₹20 - ₹50",
+                description: "Steamed rice cake, soft and light",
+              },
+              {
+                name: "Dosa",
+                price: "₹40 - ₹100",
+                description: "South Indian crepe with chutney and sambar",
+              },
+              {
+                name: "Uttapam",
+                price: "₹50 - ₹100",
+                description: "Thick pancake-like crepe with toppings",
+              },
+              {
+                name: "Paratha",
+                price: "₹30 - ₹80",
+                description: "Stuffed bread with potatoes, paneer, or egg",
+              },
+              {
+                name: "Toast & Egg",
+                price: "₹40 - ₹100",
+                description: "Buttered toast with scrambled or fried eggs",
+              },
+              {
+                name: "Oatmeal/Cereal",
+                price: "₹50 - ₹120",
+                description: "With milk, honey, and fresh fruits",
+              },
+              {
+                name: "Bread Pakora",
+                price: "₹30 - ₹60",
+                description: "Fried spiced bread slices, crispy and hot",
+              },
+              {
+                name: "Aloo Puri",
+                price: "₹50 - ₹100",
+                description: "Deep-fried bread with spiced potato curry",
+              },
+              {
+                name: "Breakfast Combo",
+                price: "₹150 - ₹300",
+                description: "From chains with multiple items and a drink",
+              },
+              {
+                name: "Cornflakes Bowl",
+                price: "₹60 - ₹150",
+                description: "Cereal with milk and fruits or yogurt",
+              },
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="border-2 border-foreground bg-card p-6 rounded-2xl hover:shadow-bold-sm transition"
+              >
+                <h3 className="text-2xl font-display">{item.name}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{item.description}</p>
+                <p className="mt-4 text-lg font-bold text-accent">{item.price}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

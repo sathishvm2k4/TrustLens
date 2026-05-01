@@ -24,17 +24,78 @@ function Beverages() {
           <p className="mt-6 max-w-2xl text-lg md:text-xl text-muted-foreground">
             See how prices vary for tea, coffee, juice, bottled water, and local drinks across different regions.</p>
 
-          <div className="mt-12 grid gap-6">
-            <div className="rounded-3xl border-2 border-foreground bg-card p-8">
-              <h2 className="text-3xl font-bold">Local favorites</h2>
-              <p className="mt-4 text-muted-foreground">
-                Masala chai, filter coffee, fresh juice, and coconut water are popular low-cost beverage choices.</p>
-            </div>
-            <div className="rounded-3xl border-2 border-foreground bg-card p-8">
-              <h2 className="text-3xl font-bold">Budget range</h2>
-              <p className="mt-4 text-muted-foreground">
-                Most drinks range from ₹10 to ₹150 depending on preparation, ingredients, and location.</p>
-            </div>
+          <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                name: "Masala Chai",
+                price: "₹10 - ₹30",
+                description: "Spiced tea served hot with milk, India's favorite",
+              },
+              {
+                name: "Filter Coffee",
+                price: "₹20 - ₹50",
+                description: "South Indian style coffee served in a cup",
+              },
+              {
+                name: "Cold Coffee",
+                price: "₹40 - ₹100",
+                description: "Iced coffee with milk and sugar, refreshing treat",
+              },
+              {
+                name: "Fresh Juice",
+                price: "₹30 - ₹80",
+                description: "Orange, mango, or mixed fruit juices",
+              },
+              {
+                name: "Coconut Water",
+                price: "₹20 - ₹50",
+                description: "Fresh tender coconut water, natural and hydrating",
+              },
+              {
+                name: "Lassi",
+                price: "₹25 - ₹60",
+                description: "Sweet or salted yogurt drink, cooling in summer",
+              },
+              {
+                name: "Sugarcane Juice",
+                price: "₹20 - ₹50",
+                description: "Fresh pressed sweet juice, street vendor special",
+              },
+              {
+                name: "Lemonade",
+                price: "₹15 - ₹40",
+                description: "Fresh lime juice with sugar and salt",
+              },
+              {
+                name: "Bottled Water",
+                price: "₹10 - ₹30",
+                description: "Packaged drinking water, 500ml bottles",
+              },
+              {
+                name: "Soft Drinks",
+                price: "₹30 - ₹80",
+                description: "Cola, lemonade, or other branded beverages",
+              },
+              {
+                name: "Badam Milk",
+                price: "₹40 - ₹100",
+                description: "Almond milk drink with cardamom, nutritious",
+              },
+              {
+                name: "Buttermilk",
+                price: "₹20 - ₹50",
+                description: "Spiced or plain buttermilk, aid to digestion",
+              },
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="border-2 border-foreground bg-card p-6 rounded-2xl hover:shadow-bold-sm transition"
+              >
+                <h3 className="text-2xl font-display">{item.name}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{item.description}</p>
+                <p className="mt-4 text-lg font-bold text-accent">{item.price}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

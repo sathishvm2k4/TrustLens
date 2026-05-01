@@ -18,6 +18,7 @@ import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as FoodsIndexRouteImport } from './routes/foods/index'
 import { Route as FoodsStreetFoodRouteImport } from './routes/foods/street-food'
 import { Route as FoodsRestaurantMealsRouteImport } from './routes/foods/restaurant-meals'
 import { Route as FoodsGroceriesRouteImport } from './routes/foods/groceries'
@@ -70,6 +71,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FoodsIndexRoute = FoodsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => FoodsRoute,
+} as any)
 const FoodsStreetFoodRoute = FoodsStreetFoodRouteImport.update({
   id: '/street-food',
   path: '/street-food',
@@ -117,6 +123,7 @@ export interface FileRoutesByFullPath {
   '/foods/groceries': typeof FoodsGroceriesRoute
   '/foods/restaurant-meals': typeof FoodsRestaurantMealsRoute
   '/foods/street-food': typeof FoodsStreetFoodRoute
+  '/foods/': typeof FoodsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -124,7 +131,6 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
   '/essentials': typeof EssentialsRoute
-  '/foods': typeof FoodsRouteWithChildren
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
   '/travel': typeof TravelRoute
@@ -134,6 +140,7 @@ export interface FileRoutesByTo {
   '/foods/groceries': typeof FoodsGroceriesRoute
   '/foods/restaurant-meals': typeof FoodsRestaurantMealsRoute
   '/foods/street-food': typeof FoodsStreetFoodRoute
+  '/foods': typeof FoodsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -152,6 +159,7 @@ export interface FileRoutesById {
   '/foods/groceries': typeof FoodsGroceriesRoute
   '/foods/restaurant-meals': typeof FoodsRestaurantMealsRoute
   '/foods/street-food': typeof FoodsStreetFoodRoute
+  '/foods/': typeof FoodsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -171,6 +179,7 @@ export interface FileRouteTypes {
     | '/foods/groceries'
     | '/foods/restaurant-meals'
     | '/foods/street-food'
+    | '/foods/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -178,7 +187,6 @@ export interface FileRouteTypes {
     | '/contact'
     | '/dashboard'
     | '/essentials'
-    | '/foods'
     | '/login'
     | '/signup'
     | '/travel'
@@ -188,6 +196,7 @@ export interface FileRouteTypes {
     | '/foods/groceries'
     | '/foods/restaurant-meals'
     | '/foods/street-food'
+    | '/foods'
   id:
     | '__root__'
     | '/'
@@ -205,6 +214,7 @@ export interface FileRouteTypes {
     | '/foods/groceries'
     | '/foods/restaurant-meals'
     | '/foods/street-food'
+    | '/foods/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -284,6 +294,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/foods/': {
+      id: '/foods/'
+      path: '/'
+      fullPath: '/foods/'
+      preLoaderRoute: typeof FoodsIndexRouteImport
+      parentRoute: typeof FoodsRoute
+    }
     '/foods/street-food': {
       id: '/foods/street-food'
       path: '/street-food'
@@ -336,6 +353,7 @@ interface FoodsRouteChildren {
   FoodsGroceriesRoute: typeof FoodsGroceriesRoute
   FoodsRestaurantMealsRoute: typeof FoodsRestaurantMealsRoute
   FoodsStreetFoodRoute: typeof FoodsStreetFoodRoute
+  FoodsIndexRoute: typeof FoodsIndexRoute
 }
 
 const FoodsRouteChildren: FoodsRouteChildren = {
@@ -345,6 +363,7 @@ const FoodsRouteChildren: FoodsRouteChildren = {
   FoodsGroceriesRoute: FoodsGroceriesRoute,
   FoodsRestaurantMealsRoute: FoodsRestaurantMealsRoute,
   FoodsStreetFoodRoute: FoodsStreetFoodRoute,
+  FoodsIndexRoute: FoodsIndexRoute,
 }
 
 const FoodsRouteWithChildren = FoodsRoute._addFileChildren(FoodsRouteChildren)
