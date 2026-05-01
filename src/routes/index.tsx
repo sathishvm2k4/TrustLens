@@ -1,14 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Layout } from "@/components/Layout";
-import { ArrowRight, ShieldCheck, Eye, Zap, Lock } from "lucide-react";
+import { ArrowRight, Eye, Zap, Lock } from "lucide-react";
+import foodImage from "@/assets/food-collage.png";
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "TrustLens — Verify what matters" },
-      { name: "description", content: "Audit-ready transparency for modern teams. Verify every decision in real time." },
-    ],
-  }),
   component: Home,
 });
 
@@ -17,24 +12,27 @@ function Home() {
     <Layout>
       {/* Hero */}
       <section className="border-b-2 border-foreground">
-        <div className="mx-auto max-w-7xl px-6 py-20 md:py-32 grid md:grid-cols-12 gap-10 items-center">
-          <div className="md:col-span-7">
-            <span className="inline-block border-2 border-foreground bg-accent px-3 py-1 text-xs font-bold uppercase tracking-widest">
-              v1.0 — Now in beta
-            </span>
-            <h1 className="mt-6 font-display text-5xl md:text-7xl lg:text-8xl leading-[0.95] font-bold">
-              Verify <em className="not-italic underline decoration-accent decoration-[6px] underline-offset-4">what</em> matters.
+        <div className="mx-auto max-w-[1400px] px-6 py-20 md:py-32 flex flex-col items-center text-center">
+
+          {/* TEXT */}
+          <div className="max-w-full">
+            <h1 className="mt-8 font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight font-bold animate-slideFade">
+              Know the real price of Indian things.
             </h1>
-            <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-xl">
-              TrustLens gives modern teams audit-ready transparency — so every decision, claim, and number can be proven in seconds, not weeks.
+
+            <p className="mt-6 text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto animate-slideFade delay-200">
+              TrustLens makes it easy to compare foods, travel, and everyday essentials with real pricing data across Karnataka.
             </p>
-            <div className="mt-10 flex flex-wrap gap-4">
+
+            <div className="mt-10 flex flex-wrap justify-center gap-4 animate-slideFade delay-300">
               <Link
                 to="/signup"
-                className="group inline-flex items-center gap-2 border-2 border-foreground bg-foreground px-6 py-3 text-sm font-bold uppercase tracking-wider text-primary-foreground shadow-bold transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none"
+                className="group inline-flex items-center gap-2 border-2 border-foreground bg-foreground px-6 py-3 text-sm font-bold uppercase tracking-wider text-primary-foreground shadow-bold transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none"
               >
-                Start free <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                Start free
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
+
               <Link
                 to="/about"
                 className="inline-flex items-center gap-2 border-2 border-foreground bg-background px-6 py-3 text-sm font-bold uppercase tracking-wider"
@@ -43,65 +41,104 @@ function Home() {
               </Link>
             </div>
           </div>
-          <div className="md:col-span-5">
-            <div className="relative">
-              <div className="border-2 border-foreground bg-card p-8 shadow-bold">
-                <div className="flex items-center gap-2 border-b-2 border-foreground pb-3">
-                  <div className="h-3 w-3 rounded-full bg-destructive border border-foreground" />
-                  <div className="h-3 w-3 rounded-full bg-accent border border-foreground" />
-                  <div className="h-3 w-3 rounded-full bg-muted border border-foreground" />
-                  <span className="ml-2 text-xs font-mono">trustlens.app/audit</span>
-                </div>
-                <div className="mt-6 space-y-4 font-mono text-sm">
-                  <div className="flex justify-between"><span className="text-muted-foreground">Records verified</span><span className="font-bold">12,847</span></div>
-                  <div className="flex justify-between"><span className="text-muted-foreground">Integrity score</span><span className="font-bold text-foreground bg-accent px-2">99.98%</span></div>
-                  <div className="flex justify-between"><span className="text-muted-foreground">Anomalies</span><span className="font-bold">0</span></div>
-                  <div className="flex justify-between"><span className="text-muted-foreground">Last audit</span><span className="font-bold">2s ago</span></div>
-                </div>
-                <div className="mt-6 border-t-2 border-foreground pt-4 flex items-center gap-2 text-xs uppercase tracking-wider">
-                  <ShieldCheck className="h-4 w-4" /> Cryptographically signed
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Features */}
-      <section className="border-b-2 border-foreground bg-secondary">
-        <div className="mx-auto max-w-7xl px-6 py-20">
-          <h2 className="font-display text-4xl md:text-5xl max-w-2xl">Built for teams who can't afford to be wrong.</h2>
-          <div className="mt-12 grid md:grid-cols-3 gap-6">
+          {/* CARDS */}
+          <div className="mt-20 w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
             {[
-              { icon: Eye, title: "Total visibility", body: "Every event, every actor, every change — searchable in milliseconds." },
-              { icon: Zap, title: "Real-time alerts", body: "Anomalies surface before they become incidents. Sleep better." },
-              { icon: Lock, title: "Tamper-proof", body: "Signed audit trails that hold up in court, in board meetings, and in headlines." },
-            ].map((f) => (
-              <div key={f.title} className="border-2 border-foreground bg-card p-6 transition-all hover:shadow-bold-sm hover:-translate-x-1 hover:-translate-y-1">
-                <div className="flex h-12 w-12 items-center justify-center border-2 border-foreground bg-accent">
-                  <f.icon className="h-6 w-6" strokeWidth={2.5} />
+              {
+                title: "Foods",
+                description: "Street food, groceries, and meal prices across India.",
+                route: "/foods",
+                images: [
+                  foodImage,
+                ],
+              },
+              {
+                title: "Travel",
+                description: "Destinations, transport, and stay costs for karnataka journeys.",
+                route: "/travel",
+                images: [
+                  "https://www.tusktravel.com/blog/wp-content/uploads/2023/07/Places-to-Visit-in-Karnataka-in-August-1024x672.jpg",
+                ],
+              },
+              {
+                title: "Essential things",
+                description: "Everyday essentials, supplies, and daily routine needed things.",
+                route: "/essentials",
+                images: [
+                  "https://miro.medium.com/v2/resize:fit:940/1*hwIhTmYbWU4qYjokbcy8BA.jpeg",
+                ],
+              },
+            ].map((section) => (
+              <div
+                key={section.title}
+                className="rounded-4xl border-2 border-foreground bg-card overflow-hidden shadow-bold-sm"
+              >
+                <div className="grid grid-cols-1 gap-2 p-3">
+                  {section.images.map((src, index) => (
+                    <Link key={index} to={section.route} className="group relative overflow-hidden rounded-2xl block cursor-pointer">
+                      <img
+                        src={typeof src === "string" && src.startsWith("http") ? `${src}?auto=format&fit=crop&w=900&q=80` : src}
+                        alt={`${section.title} ${index + 1}`}
+                        className="h-100 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+
+                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition" />
+
+                      <button className="absolute left-3 bottom-1 rounded-full bg-accent px-3 py-1 text-xs font-bold uppercase hover:bg-accent/90 transition cursor-pointer" type="button" onClick={(e) => e.preventDefault()}>
+                        Explore
+                      </button>
+                    </Link>
+                  ))}
                 </div>
-                <h3 className="mt-5 font-display text-2xl">{f.title}</h3>
-                <p className="mt-2 text-muted-foreground">{f.body}</p>
+
+                <div className="border-t-2 border-foreground px-6 py-5 text-left">
+                  <h3 className="text-2xl font-display">{section.title}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    {section.description}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="bg-foreground text-primary-foreground">
-        <div className="mx-auto max-w-7xl px-6 py-20 text-center">
-          <h2 className="font-display text-4xl md:text-6xl">Trust, but verify.</h2>
-          <p className="mt-4 text-lg opacity-80">Free for the first 30 days. No card required.</p>
-          <Link
-            to="/signup"
-            className="mt-8 inline-flex items-center gap-2 border-2 border-primary-foreground bg-accent text-foreground px-8 py-3 text-sm font-bold uppercase tracking-wider"
-          >
-            Create your account <ArrowRight className="h-4 w-4" />
-          </Link>
+      {/* Features */}
+       <section className="border-b-2 border-foreground">
+        <div className="mx-auto max-w-5xl px-6 py-20">
+          <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">About</p>
+          <h1 className="mt-3 font-display text-5xl md:text-7xl leading-[0.95]">
+            We believe trust should be <em className="not-italic bg-accent px-2">measurable</em>.
+          </h1>
+          <p className="mt-8 text-xl text-muted-foreground max-w-3xl">
+            TrustLens started with a simple frustration: in a world that runs on data, "trust me" still passes for evidence. We're building the verification layer that modern teams should have had a decade ago.
+          </p>
         </div>
       </section>
+
+      <section className="border-b-2 border-foreground bg-secondary">
+        <div className="mx-auto max-w-5xl px-6 py-20 grid md:grid-cols-2 gap-12">
+          <div>
+            <h2 className="font-display text-3xl">Our principles</h2>
+          </div>
+          <div className="space-y-6">
+            {[
+              { n: "01", t: "Transparency by default", b: "If it can be shown, it should be shown." },
+              { n: "02", t: "No magic", b: "Every signal is traceable to the action that produced it." },
+              { n: "03", t: "Built for the long now", b: "Audits in 10 years should still verify against today's records." },
+            ].map((p) => (
+              <div key={p.n} className="border-l-4 border-foreground pl-5">
+                <p className="font-mono text-xs">{p.n}</p>
+                <h3 className="mt-1 font-display text-2xl">{p.t}</h3>
+                <p className="mt-1 text-muted-foreground">{p.b}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      
     </Layout>
+    
   );
 }

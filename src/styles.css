@@ -98,3 +98,25 @@
   .shadow-accent { box-shadow: var(--shadow-accent); }
   .border-bold { border-width: 2px; border-color: var(--color-foreground); }
 }
+@keyframes slideFade {
+  0% {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slideFade {
+  animation: slideFade 1s ease-out forwards;
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+}
+
+.delay-300 {
+  animation-delay: 0.3s;
+}

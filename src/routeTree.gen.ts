@@ -9,13 +9,27 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TravelRouteImport } from './routes/travel'
 import { Route as SignupRouteImport } from './routes/signup'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as FoodsRouteImport } from './routes/foods'
+import { Route as EssentialsRouteImport } from './routes/essentials'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as FoodsStreetFoodRouteImport } from './routes/foods/street-food'
+import { Route as FoodsRestaurantMealsRouteImport } from './routes/foods/restaurant-meals'
+import { Route as FoodsGroceriesRouteImport } from './routes/foods/groceries'
+import { Route as FoodsBreakfastRouteImport } from './routes/foods/breakfast'
+import { Route as FoodsBeveragesRouteImport } from './routes/foods/beverages'
+import { Route as FoodsBakeryItemsRouteImport } from './routes/foods/bakery-items'
 
+const TravelRoute = TravelRouteImport.update({
+  id: '/travel',
+  path: '/travel',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SignupRoute = SignupRouteImport.update({
   id: '/signup',
   path: '/signup',
@@ -24,6 +38,16 @@ const SignupRoute = SignupRouteImport.update({
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FoodsRoute = FoodsRouteImport.update({
+  id: '/foods',
+  path: '/foods',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EssentialsRoute = EssentialsRouteImport.update({
+  id: '/essentials',
+  path: '/essentials',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardRoute = DashboardRouteImport.update({
@@ -46,22 +70,70 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FoodsStreetFoodRoute = FoodsStreetFoodRouteImport.update({
+  id: '/street-food',
+  path: '/street-food',
+  getParentRoute: () => FoodsRoute,
+} as any)
+const FoodsRestaurantMealsRoute = FoodsRestaurantMealsRouteImport.update({
+  id: '/restaurant-meals',
+  path: '/restaurant-meals',
+  getParentRoute: () => FoodsRoute,
+} as any)
+const FoodsGroceriesRoute = FoodsGroceriesRouteImport.update({
+  id: '/groceries',
+  path: '/groceries',
+  getParentRoute: () => FoodsRoute,
+} as any)
+const FoodsBreakfastRoute = FoodsBreakfastRouteImport.update({
+  id: '/breakfast',
+  path: '/breakfast',
+  getParentRoute: () => FoodsRoute,
+} as any)
+const FoodsBeveragesRoute = FoodsBeveragesRouteImport.update({
+  id: '/beverages',
+  path: '/beverages',
+  getParentRoute: () => FoodsRoute,
+} as any)
+const FoodsBakeryItemsRoute = FoodsBakeryItemsRouteImport.update({
+  id: '/bakery-items',
+  path: '/bakery-items',
+  getParentRoute: () => FoodsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
+  '/essentials': typeof EssentialsRoute
+  '/foods': typeof FoodsRouteWithChildren
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
+  '/travel': typeof TravelRoute
+  '/foods/bakery-items': typeof FoodsBakeryItemsRoute
+  '/foods/beverages': typeof FoodsBeveragesRoute
+  '/foods/breakfast': typeof FoodsBreakfastRoute
+  '/foods/groceries': typeof FoodsGroceriesRoute
+  '/foods/restaurant-meals': typeof FoodsRestaurantMealsRoute
+  '/foods/street-food': typeof FoodsStreetFoodRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
+  '/essentials': typeof EssentialsRoute
+  '/foods': typeof FoodsRouteWithChildren
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
+  '/travel': typeof TravelRoute
+  '/foods/bakery-items': typeof FoodsBakeryItemsRoute
+  '/foods/beverages': typeof FoodsBeveragesRoute
+  '/foods/breakfast': typeof FoodsBreakfastRoute
+  '/foods/groceries': typeof FoodsGroceriesRoute
+  '/foods/restaurant-meals': typeof FoodsRestaurantMealsRoute
+  '/foods/street-food': typeof FoodsStreetFoodRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -69,22 +141,70 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
+  '/essentials': typeof EssentialsRoute
+  '/foods': typeof FoodsRouteWithChildren
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
+  '/travel': typeof TravelRoute
+  '/foods/bakery-items': typeof FoodsBakeryItemsRoute
+  '/foods/beverages': typeof FoodsBeveragesRoute
+  '/foods/breakfast': typeof FoodsBreakfastRoute
+  '/foods/groceries': typeof FoodsGroceriesRoute
+  '/foods/restaurant-meals': typeof FoodsRestaurantMealsRoute
+  '/foods/street-food': typeof FoodsStreetFoodRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/contact' | '/dashboard' | '/login' | '/signup'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/dashboard'
+    | '/essentials'
+    | '/foods'
+    | '/login'
+    | '/signup'
+    | '/travel'
+    | '/foods/bakery-items'
+    | '/foods/beverages'
+    | '/foods/breakfast'
+    | '/foods/groceries'
+    | '/foods/restaurant-meals'
+    | '/foods/street-food'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/contact' | '/dashboard' | '/login' | '/signup'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/dashboard'
+    | '/essentials'
+    | '/foods'
+    | '/login'
+    | '/signup'
+    | '/travel'
+    | '/foods/bakery-items'
+    | '/foods/beverages'
+    | '/foods/breakfast'
+    | '/foods/groceries'
+    | '/foods/restaurant-meals'
+    | '/foods/street-food'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/contact'
     | '/dashboard'
+    | '/essentials'
+    | '/foods'
     | '/login'
     | '/signup'
+    | '/travel'
+    | '/foods/bakery-items'
+    | '/foods/beverages'
+    | '/foods/breakfast'
+    | '/foods/groceries'
+    | '/foods/restaurant-meals'
+    | '/foods/street-food'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -92,12 +212,22 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
   DashboardRoute: typeof DashboardRoute
+  EssentialsRoute: typeof EssentialsRoute
+  FoodsRoute: typeof FoodsRouteWithChildren
   LoginRoute: typeof LoginRoute
   SignupRoute: typeof SignupRoute
+  TravelRoute: typeof TravelRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/travel': {
+      id: '/travel'
+      path: '/travel'
+      fullPath: '/travel'
+      preLoaderRoute: typeof TravelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/signup': {
       id: '/signup'
       path: '/signup'
@@ -110,6 +240,20 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/foods': {
+      id: '/foods'
+      path: '/foods'
+      fullPath: '/foods'
+      preLoaderRoute: typeof FoodsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/essentials': {
+      id: '/essentials'
+      path: '/essentials'
+      fullPath: '/essentials'
+      preLoaderRoute: typeof EssentialsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard': {
@@ -140,16 +284,81 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/foods/street-food': {
+      id: '/foods/street-food'
+      path: '/street-food'
+      fullPath: '/foods/street-food'
+      preLoaderRoute: typeof FoodsStreetFoodRouteImport
+      parentRoute: typeof FoodsRoute
+    }
+    '/foods/restaurant-meals': {
+      id: '/foods/restaurant-meals'
+      path: '/restaurant-meals'
+      fullPath: '/foods/restaurant-meals'
+      preLoaderRoute: typeof FoodsRestaurantMealsRouteImport
+      parentRoute: typeof FoodsRoute
+    }
+    '/foods/groceries': {
+      id: '/foods/groceries'
+      path: '/groceries'
+      fullPath: '/foods/groceries'
+      preLoaderRoute: typeof FoodsGroceriesRouteImport
+      parentRoute: typeof FoodsRoute
+    }
+    '/foods/breakfast': {
+      id: '/foods/breakfast'
+      path: '/breakfast'
+      fullPath: '/foods/breakfast'
+      preLoaderRoute: typeof FoodsBreakfastRouteImport
+      parentRoute: typeof FoodsRoute
+    }
+    '/foods/beverages': {
+      id: '/foods/beverages'
+      path: '/beverages'
+      fullPath: '/foods/beverages'
+      preLoaderRoute: typeof FoodsBeveragesRouteImport
+      parentRoute: typeof FoodsRoute
+    }
+    '/foods/bakery-items': {
+      id: '/foods/bakery-items'
+      path: '/bakery-items'
+      fullPath: '/foods/bakery-items'
+      preLoaderRoute: typeof FoodsBakeryItemsRouteImport
+      parentRoute: typeof FoodsRoute
+    }
   }
 }
+
+interface FoodsRouteChildren {
+  FoodsBakeryItemsRoute: typeof FoodsBakeryItemsRoute
+  FoodsBeveragesRoute: typeof FoodsBeveragesRoute
+  FoodsBreakfastRoute: typeof FoodsBreakfastRoute
+  FoodsGroceriesRoute: typeof FoodsGroceriesRoute
+  FoodsRestaurantMealsRoute: typeof FoodsRestaurantMealsRoute
+  FoodsStreetFoodRoute: typeof FoodsStreetFoodRoute
+}
+
+const FoodsRouteChildren: FoodsRouteChildren = {
+  FoodsBakeryItemsRoute: FoodsBakeryItemsRoute,
+  FoodsBeveragesRoute: FoodsBeveragesRoute,
+  FoodsBreakfastRoute: FoodsBreakfastRoute,
+  FoodsGroceriesRoute: FoodsGroceriesRoute,
+  FoodsRestaurantMealsRoute: FoodsRestaurantMealsRoute,
+  FoodsStreetFoodRoute: FoodsStreetFoodRoute,
+}
+
+const FoodsRouteWithChildren = FoodsRoute._addFileChildren(FoodsRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
   DashboardRoute: DashboardRoute,
+  EssentialsRoute: EssentialsRoute,
+  FoodsRoute: FoodsRouteWithChildren,
   LoginRoute: LoginRoute,
   SignupRoute: SignupRoute,
+  TravelRoute: TravelRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -2,6 +2,7 @@ import { Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X, Eye } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
+import logo from "@/assets/trustlenslogo.png";
 
 const navLinks = [
   { to: "/", label: "Home" },
@@ -22,10 +23,12 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b-2 border-foreground bg-background/95 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <Link to="/" className="flex items-center gap-2 group">
-          <div className="flex h-9 w-9 items-center justify-center border-2 border-foreground bg-accent transition-transform group-hover:rotate-6">
-            <Eye className="h-5 w-5" strokeWidth={2.5} />
-          </div>
+        <Link to="/" className="flex items-center gap-3 group">
+          <img
+  src={logo}
+  alt="TrustLens Logo"
+  className="h-12 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
+/>
           <span className="font-display text-2xl font-bold tracking-tight">TrustLens</span>
         </Link>
 
@@ -35,18 +38,25 @@ export function Navbar() {
               key={l.to}
               to={l.to}
               className="text-sm font-medium uppercase tracking-wider hover:text-muted-foreground"
-              activeProps={{ className: "text-sm font-medium uppercase tracking-wider underline underline-offset-8 decoration-2" }}
+              activeProps={{
+                className:
+                  "text-sm font-medium uppercase tracking-wider underline underline-offset-8 decoration-2",
+              }}
               activeOptions={{ exact: true }}
             >
               {l.label}
             </Link>
           ))}
+
           {user ? (
             <>
               <Link
                 to="/dashboard"
                 className="text-sm font-medium uppercase tracking-wider hover:text-muted-foreground"
-                activeProps={{ className: "text-sm font-medium uppercase tracking-wider underline underline-offset-8 decoration-2" }}
+                activeProps={{
+                  className:
+                    "text-sm font-medium uppercase tracking-wider underline underline-offset-8 decoration-2",
+                }}
               >
                 Dashboard
               </Link>
@@ -59,7 +69,10 @@ export function Navbar() {
             </>
           ) : (
             <>
-              <Link to="/login" className="text-sm font-medium uppercase tracking-wider hover:text-muted-foreground">
+              <Link
+                to="/login"
+                className="text-sm font-medium uppercase tracking-wider hover:text-muted-foreground"
+              >
                 Login
               </Link>
               <Link
@@ -73,7 +86,7 @@ export function Navbar() {
         </nav>
 
         <button
-          className="md:hidden border-2 border-foreground p-2"
+          className="border-2 border-foreground p-2 md:hidden"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
         >
@@ -94,21 +107,37 @@ export function Navbar() {
                 {l.label}
               </Link>
             ))}
+
             {user ? (
               <>
-                <Link to="/dashboard" onClick={() => setOpen(false)} className="py-2 text-sm font-medium uppercase tracking-wider">
+                <Link
+                  to="/dashboard"
+                  onClick={() => setOpen(false)}
+                  className="py-2 text-sm font-medium uppercase tracking-wider"
+                >
                   Dashboard
                 </Link>
-                <button onClick={handleSignOut} className="mt-2 border-2 border-foreground bg-foreground px-4 py-2 text-sm font-bold uppercase tracking-wider text-primary-foreground">
+                <button
+                  onClick={handleSignOut}
+                  className="mt-2 border-2 border-foreground bg-foreground px-4 py-2 text-sm font-bold uppercase tracking-wider text-primary-foreground"
+                >
                   Sign out
                 </button>
               </>
             ) : (
               <>
-                <Link to="/login" onClick={() => setOpen(false)} className="py-2 text-sm font-medium uppercase tracking-wider">
+                <Link
+                  to="/login"
+                  onClick={() => setOpen(false)}
+                  className="py-2 text-sm font-medium uppercase tracking-wider"
+                >
                   Login
                 </Link>
-                <Link to="/signup" onClick={() => setOpen(false)} className="mt-2 border-2 border-foreground bg-accent px-4 py-2 text-sm font-bold uppercase tracking-wider text-center">
+                <Link
+                  to="/signup"
+                  onClick={() => setOpen(false)}
+                  className="mt-2 border-2 border-foreground bg-accent px-4 py-2 text-center text-sm font-bold uppercase tracking-wider"
+                >
                   Get started
                 </Link>
               </>
