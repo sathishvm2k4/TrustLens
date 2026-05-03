@@ -9,6 +9,54 @@ export const Route = createFileRoute("/foods/beverages")({
 function Beverages() {
   return (
     <Layout>
+      <style>
+        {`
+          .badge-tooltip {
+            position: relative;
+          }
+          .badge-tooltip::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 6px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.1s ease-in-out;
+            z-index: 10;
+          }
+          .badge-tooltip:hover::after {
+            opacity: 1;
+          }
+
+          .animated-highlight {
+            background: linear-gradient(90deg, transparent 0%, rgba(217, 119, 6, 0.55) 30%, rgba(217, 119, 6, 0.55) 70%, transparent 100%);
+            background-size: 300% 100%;
+            background-repeat: no-repeat;
+            background-position: 0 0;
+            animation: highlight-slide 8s linear infinite;
+            display: block;
+            width: 100%;
+            white-space: pre-line;
+            padding: 0.15rem 0.25rem;
+          }
+
+          @keyframes highlight-slide {
+            0% {
+              background-position: 0 0;
+            }
+            100% {
+              background-position: 100% 0;
+            }
+          }
+        `}
+      </style>
       <section className="border-b-2 border-foreground">
         <div className="mx-auto max-w-7xl px-6 py-20 md:py-32">
           <Link
@@ -24,76 +72,190 @@ function Beverages() {
           <p className="mt-6 max-w-2xl text-lg md:text-xl text-muted-foreground">
             See how prices vary for tea, coffee, juice, bottled water, and local drinks across different regions.</p>
 
-          <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
                 name: "Masala Chai",
-                price: "₹10 - ₹30",
+                image: "", // Add image here later
+                note: "Prices are indicative and may vary across\nvendors",
+                badges: [
+                  { color: "bg-emerald-500", label: "₹10" },
+                  { color: "bg-blue-500", label: "₹20" },
+                  { color: "bg-red-500", label: "₹30" },
+                ],
                 description: "Spiced tea served hot with milk, India's favorite",
               },
               {
                 name: "Filter Coffee",
-                price: "₹20 - ₹50",
+                image: "", // Add image here later
+                note: "Prices are indicative and may vary across\nvendors",
+                badges: [
+                  { color: "bg-emerald-500", label: "₹20" },
+                  { color: "bg-blue-500", label: "₹35" },
+                  { color: "bg-red-500", label: "₹50" },
+                ],
                 description: "South Indian style coffee served in a cup",
               },
               {
                 name: "Cold Coffee",
-                price: "₹40 - ₹100",
+                image: "", // Add image here later
+                note: "Prices are indicative and may vary across\nvendors",
+                badges: [
+                  { color: "bg-emerald-500", label: "₹40" },
+                  { color: "bg-blue-500", label: "₹70" },
+                  { color: "bg-red-500", label: "₹100" },
+                ],
                 description: "Iced coffee with milk and sugar, refreshing treat",
               },
               {
                 name: "Fresh Juice",
-                price: "₹30 - ₹80",
+                image: "", // Add image here later
+                note: "Prices are indicative and may vary across\nvendors",
+                badges: [
+                  { color: "bg-emerald-500", label: "₹30" },
+                  { color: "bg-blue-500", label: "₹55" },
+                  { color: "bg-red-500", label: "₹80" },
+                ],
                 description: "Orange, mango, or mixed fruit juices",
               },
               {
                 name: "Coconut Water",
-                price: "₹20 - ₹50",
+                image: "", // Add image here later
+                note: "Prices are indicative and may vary across\nvendors",
+                badges: [
+                  { color: "bg-emerald-500", label: "₹20" },
+                  { color: "bg-blue-500", label: "₹35" },
+                  { color: "bg-red-500", label: "₹50" },
+                ],
                 description: "Fresh tender coconut water, natural and hydrating",
               },
               {
                 name: "Lassi",
-                price: "₹25 - ₹60",
+                image: "", // Add image here later
+                note: "Prices are indicative and may vary across\nvendors",
+                badges: [
+                  { color: "bg-emerald-500", label: "₹25" },
+                  { color: "bg-blue-500", label: "₹40" },
+                  { color: "bg-red-500", label: "₹60" },
+                ],
                 description: "Sweet or salted yogurt drink, cooling in summer",
               },
               {
                 name: "Sugarcane Juice",
-                price: "₹20 - ₹50",
+                image: "", // Add image here later
+                note: "Prices are indicative and may vary across\nvendors",
+                badges: [
+                  { color: "bg-emerald-500", label: "₹20" },
+                  { color: "bg-blue-500", label: "₹35" },
+                  { color: "bg-red-500", label: "₹50" },
+                ],
                 description: "Fresh pressed sweet juice, street vendor special",
               },
               {
                 name: "Lemonade",
-                price: "₹15 - ₹40",
+                image: "", // Add image here later
+                note: "Prices are indicative and may vary across\nvendors",
+                badges: [
+                  { color: "bg-emerald-500", label: "₹15" },
+                  { color: "bg-blue-500", label: "₹25" },
+                  { color: "bg-red-500", label: "₹40" },
+                ],
                 description: "Fresh lime juice with sugar and salt",
               },
               {
                 name: "Bottled Water",
-                price: "₹10 - ₹30",
+                image: "", // Add image here later
+                note: "Prices are indicative and may vary across\nvendors",
+                badges: [
+                  { color: "bg-emerald-500", label: "₹10" },
+                  { color: "bg-blue-500", label: "₹20" },
+                  { color: "bg-red-500", label: "₹30" },
+                ],
                 description: "Packaged drinking water, 500ml bottles",
               },
               {
                 name: "Soft Drinks",
-                price: "₹30 - ₹80",
+                image: "", // Add image here later
+                note: "Prices are indicative and may vary across\nvendors",
+                badges: [
+                  { color: "bg-emerald-500", label: "₹30" },
+                  { color: "bg-blue-500", label: "₹55" },
+                  { color: "bg-red-500", label: "₹80" },
+                ],
                 description: "Cola, lemonade, or other branded beverages",
               },
               {
                 name: "Badam Milk",
-                price: "₹40 - ₹100",
+                image: "", // Add image here later
+                note: "Prices are indicative and may vary across\nvendors",
+                badges: [
+                  { color: "bg-emerald-500", label: "₹40" },
+                  { color: "bg-blue-500", label: "₹70" },
+                  { color: "bg-red-500", label: "₹100" },
+                ],
                 description: "Almond milk drink with cardamom, nutritious",
               },
               {
                 name: "Buttermilk",
-                price: "₹20 - ₹50",
+                image: "", // Add image here later
+                note: "Prices are indicative and may vary across\nvendors",
+                badges: [
+                  { color: "bg-emerald-500", label: "₹20" },
+                  { color: "bg-blue-500", label: "₹35" },
+                  { color: "bg-red-500", label: "₹50" },
+                ],
                 description: "Spiced or plain buttermilk, aid to digestion",
               },
             ].map((item, index) => (
               <div
                 key={index}
-                className="border-2 border-foreground bg-card p-6 rounded-2xl hover:shadow-bold-sm transition"
+                className="border-2 border-foreground bg-card rounded-2xl hover:shadow-bold-sm transition overflow-hidden flex flex-col"
               >
-                <h3 className="text-2xl font-display">{item.name}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{item.description}</p>
-                <p className="mt-4 text-lg font-bold text-accent">{item.price}</p>
+                {item.image ? (
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="h-52 w-full object-cover"
+                  />
+                ) : (
+                  <div className="h-52 w-full bg-muted/20 border-b-2 border-border flex flex-col items-center justify-center text-muted-foreground gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-image opacity-50"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+                    <span className="text-xs uppercase tracking-wider font-bold opacity-50">Image Space</span>
+                  </div>
+                )}
+                
+                {item.badges ? (
+                  <div className="px-4 py-2 bg-gradient-to-r from-slate-50 to-slate-100 flex flex-wrap gap-2 justify-center border-b border-border/40">
+                    {item.badges.map((badge) => (
+                      <span
+                        key={badge.label}
+                        data-tooltip={
+                          badge.color === "bg-emerald-500"
+                            ? "Minimum price"
+                            : badge.color === "bg-blue-500"
+                            ? "Maximum price"
+                            : "Extra price"
+                        }
+                        className={`badge-tooltip inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-bold text-white shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer select-none ${badge.color} hover:scale-105`}
+                      >
+                        <span className="h-2 w-2 rounded-full bg-white/80 shadow-sm" />
+                        {badge.label}
+                      </span>
+                    ))}
+                  </div>
+                ) : null}
+                
+                <div className="p-4 flex-grow">
+                  <h3 className="text-xl font-display cursor-default select-none">{item.name}</h3>
+                  {item.note ? (
+                    <p className="mt-1 text-xs tracking-[0.08em] text-muted-foreground cursor-default select-none animated-highlight">
+                      {item.note}
+                    </p>
+                  ) : null}
+                  {item.description ? (
+                    <p className="mt-2 text-sm text-muted-foreground cursor-default select-none">{item.description}</p>
+                  ) : null}
+                </div>
               </div>
             ))}
           </div>
